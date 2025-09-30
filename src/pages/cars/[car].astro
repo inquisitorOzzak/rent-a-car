@@ -1,0 +1,374 @@
+---
+import CarLayout from '../../layouts/CarLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const cars = await getCollection('cars');
+  return cars.map((car) => ({
+    params: { car: car.id.replace('.json', '') },
+    props: { car },
+  }));
+}
+
+const { car } = Astro.props;
+const carData = car.data.car;
+const carSlug = car.id.replace('.json', '');
+const imagePath = `/cars/${carSlug}.jpeg`;
+---
+
+<CarLayout 
+  title={`${carData.model} - Luxury Car Rental`}
+  description={`Rent the ${carData.model} - ${carData.specs.power_hp}HP, ${carData.specs.acceleration_0_100_kmh} 0-100km/h. From ${carData.price_list[0].price_per_day}/day.`}
+>
+  <main>
+    <div class="car-hero">
+      <div class="container">
+        <div class="car-hero-content">
+          <div class="car-hero-image">
+            <img src={imagePath} alt={carData.model} />
+          </div>
+          <div class="car-hero-info">
+            <h1>{carData.model}</h1>
+            <div class="car-year-color">
+              <span>{carData.specs.production_year}</span>
+              <span>•</span>
+              <span>{carData.specs.colour}</span>
+            </div>
+            <div class="price-highlight">
+              <span class="price-from">From</span>
+              <span class="price-amount">{carData.price_list[0].price_per_day}</span>
+              <span class="price-period">per day</span>
+            </div>
+            <a href="#contact" class="btn btn-primary btn-large">Book Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="car-details">
+      <div class="container">
+        <div class="details-grid">
+          <!-- Specifications -->
+          <section class="specs-section">
+            <h2>Specifications</h2>
+            <div class="specs-grid">
+              <div class="spec-item">
+                <span class="spec-label">Engine</span>
+                <span class="spec-value">{carData.specs.engine}</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Power</span>
+                <span class="spec-value">{carData.specs.power_hp} HP ({carData.technical_specs.power_kw} kW)</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Torque</span>
+                <span class="spec-value">{carData.specs.torque_nm} Nm</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">0-100 km/h</span>
+                <span class="spec-value">{carData.specs.acceleration_0_100_kmh}</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Weight</span>
+                <span class="spec-value">{carData.specs.weight_kg} kg</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Drive</span>
+                <span class="spec-value">{carData.specs.drive}</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Transmission</span>
+                <span class="spec-value">{carData.technical_specs.transmission}</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Fuel Consumption</span>
+                <span class="spec-value">{carData.technical_specs.fuel_consumption_l_per_100km}L/100km</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Features -->
+          <section class="features-section">
+            <h2>Features</h2>
+            <ul class="features-list">
+              {carData.features.map(feature => (
+                <li>{feature}</li>
+              ))}
+            </ul>
+          </section>
+        </div>
+
+        <!-- Pricing -->
+        <section class="pricing-section">
+          <h2>Pricing</h2>
+          <div class="pricing-grid">
+            {carData.price_list.map(price => (
+              <div class="price-card">
+                <div class="price-duration">{price.from}</div>
+                <div class="price-amount">{price.price_per_day}</div>
+                <div class="price-unit">per day</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Rental Terms -->
+        <section class="terms-section">
+          <h2>Rental Terms</h2>
+          <div class="terms-grid">
+            <div class="term-item">
+              <h3>Security Deposit</h3>
+              <p>{carData.rental_terms.security_deposit}</p>
+            </div>
+            <div class="term-item">
+              <h3>Minimum Age</h3>
+              <p>{carData.rental_terms.minimum_driver_age} years</p>
+            </div>
+            <div class="term-item">
+              <h3>Experience Required</h3>
+              <p>{carData.rental_terms.minimum_experience_years} years</p>
+            </div>
+            <div class="term-item">
+              <h3>Minimum Rental</h3>
+              <p>{carData.rental_terms.minimum_rental_period_days} days</p>
+            </div>
+            <div class="term-item">
+              <h3>Included KM/day</h3>
+              <p>{carData.rental_terms.included_km_per_day} km</p>
+            </div>
+            <div class="term-item">
+              <h3>Additional KM</h3>
+              <p>{carData.rental_terms.additional_cost_per_km}</p>
+            </div>
+          </div>
+          <div class="insurance-info">
+            <h3>Insurance</h3>
+            <p>{carData.rental_terms.insurance}</p>
+          </div>
+          <div class="pickup-locations">
+            <h3>Pickup Locations</h3>
+            <div class="locations">
+              {carData.rental_terms.pickup_locations.map(location => (
+                <span class="location-tag">{location}</span>
+              ))}
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+</CarLayout>
+
+<style>
+  /* All the car detail page styles here - same as before */
+  .car-hero {
+    background: var(--color-background);
+    padding: 2rem 0;
+  }
+
+  .car-hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .car-hero-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .car-hero-info h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .car-year-color {
+    color: var(--color-text-light);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+  }
+
+  .price-highlight {
+    background: var(--color-white);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+  }
+
+  .price-from {
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+  }
+
+  .price-amount {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    margin: 0 0.5rem;
+  }
+
+  .price-period {
+    color: var(--color-text-light);
+  }
+
+  .btn-large {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
+
+  .car-details {
+    padding: 4rem 0;
+  }
+
+  .details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .specs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .spec-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem;
+    background: var(--color-white);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+  }
+
+  .spec-label {
+    color: var(--color-text-light);
+  }
+
+  .spec-value {
+    font-weight: 600;
+    color: var(--color-dark);
+  }
+
+  .features-list {
+    list-style: none;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .features-list li {
+    padding: 0.75rem;
+    background: var(--color-white);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--color-light);
+  }
+
+  .pricing-section {
+    margin-bottom: 3rem;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+
+  .price-card {
+    background: var(--color-white);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+  }
+
+  .price-duration {
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .price-card .price-amount {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    display: block;
+  }
+
+  .price-unit {
+    color: var(--color-text-light);
+    font-size: 0.8rem;
+  }
+
+  .terms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .term-item {
+    background: var(--color-white);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+  }
+
+  .term-item h3 {
+    color: var(--color-medium);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .insurance-info, .pickup-locations {
+    background: var(--color-white);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 1rem;
+  }
+
+  .locations {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .location-tag {
+    background: var(--color-light);
+    color: var(--color-dark);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .car-hero-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .details-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .specs-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .pricing-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .terms-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

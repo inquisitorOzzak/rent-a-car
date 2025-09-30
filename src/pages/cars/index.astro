@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CarListingCard from '../../components/CarListingCard.astro';
+import { getCollection } from 'astro:content';
+
+const cars = await getCollection('cars');
+---
+
+<BaseLayout 
+  title="Luxury Car Rentals - Premium Fleet"
+  description="Browse our exclusive collection of luxury and high-performance rental cars. Professional service and competitive rates."
+>
+  <main>
+    <div class="hero">
+      <div class="container">
+        <h1>Premium Car Rentals</h1>
+        <p>Experience luxury with our exclusive fleet of high-performance vehicles</p>
+      </div>
+    </div>
+
+    <section class="cars-section">
+      <div class="container">
+        <h2>Our Fleet</h2>
+        <div class="cars-grid">
+          {cars.map((car) => {
+            const carSlug = car.id.replace('.json', '');
+            return <CarListingCard car={car} carSlug={carSlug} />;
+          })}
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .hero {
+    background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-medium) 100%);
+    color: var(--color-white);
+    padding: 4rem 0;
+    text-align: center;
+  }
+
+  .hero h1 {
+    color: var(--color-white);
+    margin-bottom: 1rem;
+  }
+
+  .hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+  }
+
+  .cars-section {
+    padding: 4rem 0;
+  }
+
+  .cars-section h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .cars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .cars-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
