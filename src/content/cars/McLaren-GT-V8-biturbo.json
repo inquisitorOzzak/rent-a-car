@@ -1,0 +1,54 @@
+{
+  "car": {
+    "model": "Lamborghini Huracan EVO RWD",
+    "features": [
+      "20/21 inch aluminium wheels",
+      "automatic gearbox with pedals on steering wheel",
+      "cruise control",
+      "front and rear parking sensors",
+      "rear camera",
+      "sports exhaust",
+      "automatic AC",
+      "navigation",
+      "multimedia",
+      "leather seats"
+    ],
+    "specs": {
+      "production_year": 2021,
+      "colour": "red/black",
+      "engine": "V8 4.0L",
+      "power_hp": 620,
+      "torque_nm": 630,
+      "weight_kg": 1530,
+      "acceleration_0_100_kmh": "3.2s",
+      "drive": "rear wheel drive"
+    },
+    "technical_specs": {
+      "power_kw": 456,
+      "fuel_type": "Petrol",
+      "fuel_consumption_l_per_100km": 12,
+      "doors": 2,
+      "seats": 2,
+      "transmission": "Automatic"
+    },
+    "rental_terms": {
+      "insurance": "CDW insurance (covers damages over 8.000 € + VAT)",
+      "included_km_per_day": 100,
+      "additional_cost_per_km": "4€",
+      "security_deposit": "8.000 €",
+      "minimum_driver_age": 28,
+      "minimum_experience_years": 8,
+      "minimum_rental_period_days": 1,
+      "pickup_locations": ["Zagreb", "Rijeka", "Opatija"]
+    },
+    "price_list": [
+      { "from": "1 day", "price_per_day": "1.000 €" },
+      { "from": "3 days", "price_per_day": "800 €" },
+      { "from": "1 week", "price_per_day": "600 €" },
+      { "from": "2 weeks", "price_per_day": "350 €" },
+      { "from": "30 days", "price_per_day": "300 €" },
+      { "from": "90 days", "price_per_day": "250 €" },
+      { "from": "180 days", "price_per_day": "200 €" }
+    ]
+  }
+}

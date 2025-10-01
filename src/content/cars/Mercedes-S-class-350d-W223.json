@@ -1,0 +1,53 @@
+{
+  "car": {
+    "model": "Mercedes S-Class 350d W223",
+    "features": [
+      "21 inch AMG alloy wheels",
+      "air suspension",
+      "LED headlights",
+      "navigation",
+      "radio-CD-MP3-USB multimedia",
+      "bluetooth",
+      "adaptive cruise control",
+      "9G-DCT automatic transmission",
+      "dual zone automatic AC",
+      "leather cooled & heated front seats"
+    ],
+    "specs": {
+      "production_year": 2022,
+      "colour": "black",
+      "engine": "3.0L turbo diesel, 6 cylinders",
+      "power_hp": 286,
+      "torque_nm": 600,
+      "weight_kg": 1950,
+      "acceleration_0_100_kmh": "6.4s",
+      "drive": "rear wheel drive"
+    },
+    "technical_specs": {
+      "power_kw": 210,
+      "fuel_type": "Diesel",
+      "fuel_consumption_l_per_100km": 10,
+      "doors": 4,
+      "seats": 5,
+      "transmission": "Automatic"
+    },
+    "rental_terms": {
+      "insurance": "CDW insurance (covers damages over 4.000 € + VAT)",
+      "included_km_per_day": 100,
+      "additional_cost_per_km": "2€",
+      "security_deposit": "2.000 €",
+      "minimum_driver_age": 24,
+      "minimum_experience_years": 4,
+      "minimum_rental_period_days": 3,
+      "pickup_locations": ["Zagreb", "Rijeka", "Opatija"]
+    },
+    "price_list": [
+      { "from": "3 days", "price_per_day": "400 €" },
+      { "from": "1 week", "price_per_day": "300 €" },
+      { "from": "2 weeks", "price_per_day": "200 €" },
+      { "from": "30 days", "price_per_day": "135 €" },
+      { "from": "90 days", "price_per_day": "115 €" },
+      { "from": "180 days", "price_per_day": "100 €" }
+    ]
+  }
+}
