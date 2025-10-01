@@ -1,6 +1,6 @@
 ---
 import CarLayout from '../../layouts/CarLayout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
   const cars = await getCollection('cars');
@@ -10,7 +10,11 @@ export async function getStaticPaths() {
   }));
 }
 
-const { car } = Astro.props;
+interface Props {
+  car: CollectionEntry<'cars'>;
+}
+
+const { car }: Props = Astro.props;
 const carData = car.data.car;
 const carSlug = car.id.replace('.json', '');
 const imagePath = `/cars/${carSlug}.jpeg`;
