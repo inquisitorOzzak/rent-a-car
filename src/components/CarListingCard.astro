@@ -9,35 +9,58 @@ const carData = car.data.car;
 const imagePath = `/cars/${carSlug}.jpeg`;
 ---
 
-<article class="car-card">
-  <div class="car-image">
-    <img src={imagePath} alt={carData.model} loading="lazy" />
-  </div>
-  <div class="car-content">
-    <h3>{carData.model}</h3>
-    <div class="car-specs">
-      <span class="spec">
-        <strong>{carData.specs.power_hp}hp</strong>
-      </span>
-      <span class="spec">
-        <strong>{carData.specs.production_year}</strong>
-      </span>
-      <span class="spec">
-        <strong>{carData.technical_specs.fuel_type}</strong>
-      </span>
-      <span class="spec">
-        <strong>{carData.technical_specs.transmission}</strong>
-      </span>
+<a href={`/cars/${carSlug}`} class="car-card-link">
+  <article class="car-card">
+    <div class="car-image">
+      <img src={imagePath} alt={carData.model} loading="lazy" />
     </div>
-    <div class="car-pricing">
-      <span class="price">From <strong>{carData.price_list[carData.price_list.length - 1].price_per_day}</strong>/day</span>
-      <span class="min-rental">Min. {carData.rental_terms.minimum_rental_period_days} days</span>
+    <div class="car-content">
+      <h3>{carData.model}</h3>
+      <div class="car-specs">
+        <span class="spec">
+          <strong>{carData.specs.power_hp}hp</strong>
+        </span>
+        <span class="spec">
+          <strong>{carData.specs.production_year}</strong>
+        </span>
+        <span class="spec">
+          <strong>{carData.technical_specs.fuel_type}</strong>
+        </span>
+        <span class="spec">
+          <strong>{carData.technical_specs.transmission}</strong>
+        </span>
+      </div>
+      <div class="car-pricing">
+        <span class="price">From <strong>{carData.price_list[carData.price_list.length - 1].price_per_day}</strong>/day</span>
+        <span class="min-rental">Min. {carData.rental_terms.minimum_rental_period_days} days</span>
+      </div>
     </div>
-    <a href={`/cars/${carSlug}`} class="btn btn-primary">View Details</a>
-  </div>
-</article>
+  </article>
+</a>
 
 <style>
+  .car-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+  }
+
+  .car-card-link:hover {
+    text-decoration: none;
+  }
+
+  .car-card-link:visited {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .car-card-link:focus {
+    text-decoration: none;
+    outline: 2px solid var(--color-medium);
+    outline-offset: 2px;
+  }
+
   .car-card {
     background: var(--color-white);
     border-radius: var(--border-radius);
@@ -50,6 +73,7 @@ const imagePath = `/cars/${carSlug}.jpeg`;
     flex-direction: column-reverse;
     border-left: 4px solid var(--color-medium);
     position: relative;
+    cursor: pointer;
   }
 
   .car-card::before {
@@ -69,11 +93,11 @@ const imagePath = `/cars/${carSlug}.jpeg`;
     transform: scaleY(1);
   }
 
-.car-card:hover {
-  border-left: 4px solid var(--color-dark);
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-lg);
-}
+  .car-card:hover {
+    border-left: 4px solid var(--color-dark);
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+  }
 
   .car-image {
     height: 400px;
@@ -82,8 +106,11 @@ const imagePath = `/cars/${carSlug}.jpeg`;
     align-items: center;
     justify-content: center;
     background: var(--color-white);
-    flex-shrink: 0; /* Prevent shrinking */
-    padding: 1.2rem;
+    flex-shrink: 0;
+    padding-top: 0rem;
+    padding-bottom: 1.2rem;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
   }
 
   .car-image img {
@@ -100,13 +127,13 @@ const imagePath = `/cars/${carSlug}.jpeg`;
 
   .car-content {
     padding: 1.5rem;
-    flex: 1; /* Take remaining space */
+    flex: 1;
     display: flex;
     flex-direction: column;
   }
 
   .car-content h3 {
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
     font-size: 1.3rem;
   }
 
@@ -115,7 +142,7 @@ const imagePath = `/cars/${carSlug}.jpeg`;
     gap: 1rem;
     margin-bottom: 1rem;
     flex-wrap: wrap;
-    min-height: 2rem; /* Consistent height */
+    min-height: 2rem;
   }
 
   .spec {
@@ -131,11 +158,11 @@ const imagePath = `/cars/${carSlug}.jpeg`;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0rem;
     padding: 1rem;
     background: var(--color-background);
     border-radius: 8px;
-    margin-top: auto; /* Push to bottom */
+    margin-top: auto;
   }
 
   .price {
@@ -150,13 +177,47 @@ const imagePath = `/cars/${carSlug}.jpeg`;
 
   @media (max-width: 768px) {
     .car-specs {
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* 2 columns */
       gap: 0.5rem;
+      min-height: auto;
     }
-    
+        
     .car-pricing {
-      flex-direction: column;
       gap: 0.5rem;
+      text-align: center;
+    }
+
+    .car-pricing .price {
+      font-size: 0.9rem;
+    }
+
+    .car-pricing .min-rental {
+      font-size: 0.8rem;
+    }
+
+    .car-image {
+      height: 300px; /* Slightly smaller on mobile */
+      padding: 0.8rem; /* Less padding */
+    }
+
+    .car-image img {
+      object-fit: cover; /* Changed from contain to cover */
+      object-position: left center; /* Keep left border visible when zoomed */
+    }
+
+    .car-content {
+      padding: 1rem; /* Less padding on mobile */
+    }
+
+    .car-content h3 {
+      font-size: 1.1rem; /* Slightly smaller title */
+      margin-bottom: 0.75rem;
+    }
+
+    .spec {
+      font-size: 0.75rem; /* Smaller spec text */
+      padding: 0.2rem 0.6rem;
       text-align: center;
     }
   }

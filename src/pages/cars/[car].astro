@@ -374,4 +374,103 @@ const imagePath = `/cars/${carSlug}.jpeg`;
       grid-template-columns: 1fr;
     }
   }
+
+  @media (max-width: 768px) {
+    .car-hero {
+      padding: 1.5rem 0; /* Less padding on mobile */
+    }
+
+    .car-hero-content {
+      grid-template-columns: 1fr; /* Stack image and info vertically */
+      gap: 2rem;
+    }
+    
+    .car-hero-image img {
+      height: 250px; /* Smaller image on mobile */
+      object-fit: cover;
+    }
+
+    .car-hero-info h1 {
+      font-size: 2rem; /* Smaller title */
+      margin-bottom: 0.75rem;
+    }
+
+    .car-year-color {
+      font-size: 1rem; /* Smaller year/color text */
+      margin-bottom: 1.5rem;
+    }
+
+    .price-highlight {
+      padding: 1rem; /* Less padding */
+      margin-bottom: 1.5rem;
+    }
+
+    .price-amount {
+      font-size: 1.5rem; /* Smaller price */
+    }
+
+    .btn-large {
+      padding: 0.75rem 1.5rem; /* Smaller button */
+      font-size: 1rem;
+      width: 100%; /* Full width button */
+    }
+
+    .car-details {
+      padding: 2rem 0; /* Less padding */
+    }
+    
+    .details-grid {
+      grid-template-columns: 1fr; /* Stack specs and features */
+      gap: 2rem;
+    }
+    
+    .specs-grid {
+      grid-template-columns: 1fr; /* Single column specs */
+    }
+    
+    .pricing-grid {
+      grid-template-columns: repeat(2, 1fr); 
+    }
+    
+    .terms-grid {
+      grid-template-columns: 1fr; /* Single column terms */
+    }
+
+    .spec-item {
+      padding: 0.5rem; /* Less padding */
+    }
+
+    .term-item {
+      padding: 1rem; /* Less padding */
+    }
+
+    .insurance-info, .pickup-locations {
+      padding: 1rem; /* Less padding */
+    }
+
+    .location-tag {
+      font-size: 0.8rem; /* Smaller location tags */
+      padding: 0.4rem 0.8rem;
+    }
+
+    /* Make container more mobile-friendly */
+    .container {
+      padding: 0 1rem;
+    }
+  }
+
+  /* Extra small screens */
+  @media (max-width: 480px) {
+    .car-hero-info h1 {
+      font-size: 1.75rem;
+    }
+
+    .price-card .price-amount {
+      font-size: 1.25rem;
+    }
+
+    .locations {
+      justify-content: center; /* Center location tags */
+    }
+  }
 </style>
