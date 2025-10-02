@@ -44,14 +44,36 @@ const imagePath = `/cars/${carSlug}.jpeg`;
     box-shadow: var(--shadow);
     overflow: hidden;
     transition: all 0.3s ease;
-    width: fit-content;
-    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    border-left: 4px solid var(--color-medium);
+    position: relative;
   }
 
-  .car-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-lg);
+  .car-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--color-dark);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.15s ease;
   }
+
+  .car-card:hover::before {
+    transform: scaleY(1);
+  }
+
+.car-card:hover {
+  border-left: 4px solid var(--color-dark);
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
 
   .car-image {
     height: 400px;
@@ -60,6 +82,8 @@ const imagePath = `/cars/${carSlug}.jpeg`;
     align-items: center;
     justify-content: center;
     background: var(--color-white);
+    flex-shrink: 0; /* Prevent shrinking */
+    padding: 1.2rem;
   }
 
   .car-image img {
@@ -67,6 +91,7 @@ const imagePath = `/cars/${carSlug}.jpeg`;
     height: 100%;
     object-fit: contain;
     transition: transform 0.3s ease;
+    border-radius: 8px;
   }
 
   .car-card:hover .car-image img {
@@ -75,6 +100,9 @@ const imagePath = `/cars/${carSlug}.jpeg`;
 
   .car-content {
     padding: 1.5rem;
+    flex: 1; /* Take remaining space */
+    display: flex;
+    flex-direction: column;
   }
 
   .car-content h3 {
@@ -87,6 +115,7 @@ const imagePath = `/cars/${carSlug}.jpeg`;
     gap: 1rem;
     margin-bottom: 1rem;
     flex-wrap: wrap;
+    min-height: 2rem; /* Consistent height */
   }
 
   .spec {
@@ -106,6 +135,7 @@ const imagePath = `/cars/${carSlug}.jpeg`;
     padding: 1rem;
     background: var(--color-background);
     border-radius: 8px;
+    margin-top: auto; /* Push to bottom */
   }
 
   .price {

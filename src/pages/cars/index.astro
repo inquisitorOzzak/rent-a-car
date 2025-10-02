@@ -56,6 +56,7 @@ const cars = await getCollection('cars');
     flex-direction: column;
     align-items: center;
   }
+
   .cars-section h2 {
     text-align: center;
     margin-bottom: 3rem;
@@ -66,7 +67,7 @@ const cars = await getCollection('cars');
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
     justify-content: center;
-    aligh-items: center;
+    aligh-items: stretch;
   }
 
   @media (max-width: 768px) {
