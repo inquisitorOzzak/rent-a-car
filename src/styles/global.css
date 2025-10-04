@@ -1,16 +1,20 @@
 /* Color Variables */
 :root {
-  --color-dark: #2E5077;
-  --color-medium: #4DA1A9;
-  --color-light: #79D7BE;
-  --color-background: #F6F4F0;
-  --color-white: #ffffff;
-  --color-text: #333333;
-  --color-text-light: #666666;
+  --color-pine-dark: #31748f;
+  --color-pine-medium: #4DA1A9;
+  --color-pink-dark: #eb6f92;
+  --color-pink-light: #ebbcba;
+  --color-background: #26233a;
+  --color-background-lighter: #393552;
+  --color-text: #ea9d34;
+  --color-text-light: #c4a7e7;
   
   --border-radius: 12px;
-  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.6),
+            0 2px 6px -2px rgba(255, 255, 255, 0.1);
+
+  --shadow-lg: 0 20px 30px -5px rgba(0, 0, 0, 0.7),
+               0 8px 10px -3px rgba(255, 255, 255, 0.08);
 }
 
 /* Reset and Base Styles */
@@ -28,8 +32,14 @@ body {
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
-  color: var(--color-dark);
+h2 {
+  color: var(--color-text-light);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h3, h4, h5, h6 {
+  color: var(--color-text);
   font-weight: 600;
   line-height: 1.2;
 }
@@ -58,12 +68,12 @@ h3 { font-size: 1.5rem; }
 }
 
 .btn-primary {
-  background-color: var(--color-medium);
-  color: var(--color-white);
+  background-color: var(--color-pink-dark);
+  color: var(--color-background);
 }
 
 .btn-primary:hover {
-  background-color: var(--color-dark);
+  background-color: var(--color-pink-light);
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
 }

@@ -145,12 +145,12 @@ const imagePath = `/cars/${carSlug}.jpeg`;
               <p>{carData.rental_terms.additional_cost_per_km}</p>
             </div>
           </div>
+          <h2>Insurance</h2>
           <div class="insurance-info">
-            <h3>Insurance</h3>
             <p>{carData.rental_terms.insurance}</p>
           </div>
+          <h2>Pickup Locations</h2>
           <div class="pickup-locations">
-            <h3>Pickup Locations</h3>
             <div class="locations">
               {carData.rental_terms.pickup_locations.map(location => (
                 <span class="location-tag">{location}</span>
@@ -196,7 +196,7 @@ const imagePath = `/cars/${carSlug}.jpeg`;
   }
 
   .price-highlight {
-    background: var(--color-white);
+    background: var(--color-background-lighter);
     padding: 1.5rem;
     border-radius: var(--border-radius);
     margin-bottom: 2rem;
@@ -211,7 +211,6 @@ const imagePath = `/cars/${carSlug}.jpeg`;
   .price-amount {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--color-dark);
     margin: 0 0.5rem;
   }
 
@@ -245,7 +244,7 @@ const imagePath = `/cars/${carSlug}.jpeg`;
     display: flex;
     justify-content: space-between;
     padding: 0.75rem;
-    background: var(--color-white);
+    background: var(--color-background-lighter);
     border-radius: 8px;
     box-shadow: var(--shadow);
   }
@@ -256,7 +255,6 @@ const imagePath = `/cars/${carSlug}.jpeg`;
 
   .spec-value {
     font-weight: 600;
-    color: var(--color-dark);
   }
 
   .features-list {
@@ -267,10 +265,10 @@ const imagePath = `/cars/${carSlug}.jpeg`;
 
   .features-list li {
     padding: 0.75rem;
-    background: var(--color-white);
+    background: var(--color-background-lighter);
     border-radius: 8px;
     box-shadow: var(--shadow);
-    border-left: 4px solid var(--color-light);
+    border-left: 4px solid var(--color-text-light);
   }
 
   .pricing-section {
@@ -284,7 +282,7 @@ const imagePath = `/cars/${carSlug}.jpeg`;
   }
 
   .price-card {
-    background: var(--color-white);
+    background: var(--color-background-lighter);
     padding: 1.5rem;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
@@ -317,20 +315,20 @@ const imagePath = `/cars/${carSlug}.jpeg`;
   }
 
   .term-item {
-    background: var(--color-white);
+    background: var(--color-background-lighter);
     padding: 1.5rem;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
   }
 
   .term-item h3 {
-    color: var(--color-medium);
+    color: var(--color-text-light);
     margin-bottom: 0.5rem;
     font-size: 1rem;
   }
 
   .insurance-info, .pickup-locations {
-    background: var(--color-white);
+    background: var(--color-background-lighter);
     padding: 1.5rem;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
@@ -344,8 +342,7 @@ const imagePath = `/cars/${carSlug}.jpeg`;
   }
 
   .location-tag {
-    background: var(--color-light);
-    color: var(--color-dark);
+    background: var(--color-background);
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-weight: 500;
