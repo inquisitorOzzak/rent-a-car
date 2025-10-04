@@ -1,7 +1,7 @@
 /* Color Variables */
 :root {
-  --color-pine-dark: #31748f;
-  --color-pine-medium: #4DA1A9;
+  /* --color-pine-dark: #31748f; */
+  /* --color-pine-medium: #4DA1A9; */
   --color-pink-dark: #eb6f92;
   --color-pink-light: #ebbcba;
   --color-background: #26233a;
@@ -16,6 +16,23 @@
   --shadow-lg: 0 20px 30px -5px rgba(0, 0, 0, 0.7),
                0 8px 10px -3px rgba(255, 255, 255, 0.08);
 }
+
+/* Color Variables old */
+/* 
+:root {
+  --color-dark: #2E5077;
+  --color-medium: #4DA1A9;
+  --color-light: #79D7BE;
+  --color-background: #F6F4F0;
+  --color-white: #ffffff;
+  --color-text: #333333;
+  --color-text-light: #666666;
+  
+  --border-radius: 12px;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+*/
 
 /* Reset and Base Styles */
 * {
@@ -80,7 +97,6 @@ h3 { font-size: 1.5rem; }
 
 /* Card Styles */
 .card {
-  background: var(--color-white);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
   overflow: hidden;
